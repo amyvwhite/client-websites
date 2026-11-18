@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>META ANGEL</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="styles.css?v=5.9">
+    
+    <!-- GSAP for advanced shattering & space physics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Intro Blackout Screen -->
+    <div id="intro-blackout">
+        <div id="decryption-text" class="cyber-mono carved-text accent-neon title-text">YOU HAVE BEEN SELECTED...</div>
+    </div>
+
+    <!-- Airbrushed Fluid Background -->
+    <div id="chrome-bg"></div>
+    
+    <!-- Infinite Matrix Canvas Background -->
+    <canvas id="matrix-canvas-bg"></canvas>
+
+    <!-- Interactive Chrome Stars Wrapper -->
+    <div id="star-container"></div>
+    
+    <!-- Custom Cyber Cursor -->
+    <div id="custom-cursor"></div>
+    <div class="cursor-trail trail-1"></div>
+    <div class="cursor-trail trail-2"></div>
+    <div class="cursor-trail trail-3"></div>
+    <div class="cursor-trail trail-4"></div>
+    
+    <!-- Scanner Bar (Hidden until reveal) -->
+    <div class="scanner-bar"></div>
+
+    <!-- Main UI -->
+    <main id="main-content">
+        <!-- Shatter Logo Floater -->
+        <div id="logo-floater">
+            <div id="shatter-logo">
+                <!-- Dedicated GPU-accelerated exact-shape glow element (Traces the PNG pixels perfectly and perfectly aligned) -->
+                <div id="logo-glow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('logo.png?v=2'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat; filter: drop-shadow(0 0 30px rgba(215, 255, 0, 0.85)) drop-shadow(0 0 60px rgba(215, 255, 0, 0.65)); opacity: 0; pointer-events: none; z-index: -1;"></div>
+            </div>
+        </div>
+        
+        <div class="engraved-form-container" id="form-container" style="text-align: center; opacity: 0; pointer-events: none; position: relative;">
+            
+            <div id="real-button-content" style="opacity: 0;">
+                <div id="decode-text-1" class="cyber-mono carved-text accent title-text">
+                    [ CLEARANCE GRANTED ]
+                </div>
+                <div id="decode-text-2" class="cyber-mono carved-text subtitle-text">
+                    // THE PORTAL OPENS FOR ONE NIGHT ONLY_
+                </div>
+                <a id="portal-link" href="https://www.universe.com/events/hi-meta-angel-tickets-NR76G0?ref=share-widget-buffer" style="text-decoration: none;">
+                    <button class="engraved-btn submit-btn" style="width: 100%; max-width: 300px; margin: 0 auto; display: block;">> ACQUIRE_ACCESS <</button>
+                </a>
+                
+                <!-- Spooky ASCII Instagram Link -->
+                <a id="ig-link" href="https://www.instagram.com/hi_meta_angel/" target="_blank" style="text-decoration: none; margin-top: 40px; display: block; cursor: none;">
+                    <div class="cyber-mono" style="font-size: 0.85rem; letter-spacing: 3px; color: #ddd; margin-bottom: 12px;">
+                        >_ FOLLOW TRANSMISSION
+                    </div>
+                    <div class="cyber-mono ig-ascii-btn">
+                        <span style="opacity: 0.7;">}></span> I N S T A G R A M <span style="opacity: 0.7;"><{</span>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+    </main>
+
+    <script src="main.js?v=5.1"></script>
+</body>
+</html>

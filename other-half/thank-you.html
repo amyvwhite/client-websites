@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thank you — other half productions</title>
+    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+    <style>
+        .thankyou-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .thankyou-card {
+            max-width: 520px;
+            width: 100%;
+        }
+
+        .thankyou-title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .thankyou-title {
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .thankyou-heart {
+            position: absolute;
+            width: 1.1em;
+            height: 1.1em;
+            right: -1.3em;
+            top: -0.4em;
+            transform: rotate(15deg);
+            fill: none;
+            stroke: #ffffff;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            overflow: visible;
+            opacity: 1;
+        }
+
+        .thankyou-heart .draw-path {
+            stroke-dasharray: 100 110;
+            stroke-dashoffset: 102;
+            transition: stroke-dashoffset 1.4s cubic-bezier(0.47, 0, 0.74, 0.71) 0.15s;
+        }
+
+        .thankyou-heart.drawn .draw-path {
+            stroke-dashoffset: 0 !important;
+        }
+
+        .thankyou-text {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .thankyou-subtext {
+            font-size: 1rem;
+            color: var(--accent-color);
+            margin-bottom: 2.5rem;
+        }
+
+        .thankyou-btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #000;
+            padding: 1.1rem 2.2rem;
+            border-radius: var(--border-radius);
+            font-size: 1.05rem;
+            font-weight: 500;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .thankyou-btn:hover {
+            background-color: #e0e0e0;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .thankyou-footer {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="thankyou-wrapper">
+        <div class="thankyou-card">
+            <div class="thankyou-title-container">
+                <h1 class="thankyou-title">
+                    <span>got it!</span>
+                    <svg class="thankyou-heart" viewBox="0 0 40 40">
+                        <path class="draw-path" pathLength="100" stroke-width="1.5" d="M20,15 C13,4 5,8 7,19 C8.5,25 15,29 20,33 C25,29 31.5,25 33,19 C35,8 27,4 20,15" />
+                    </svg>
+                </h1>
+            </div>
+
+            <p class="thankyou-text">thanks for reaching out.</p>
+            <p class="thankyou-subtext">we'll get back to you as soon as we can.</p>
+
+            <a href="index.html" class="thankyou-btn">← back to website</a>
+
+            <p class="thankyou-footer">&copy; 2026 other half productions</p>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    document.querySelector('.thankyou-heart').classList.add('drawn');
+                }, 50);
+            });
+        });
+    </script>
+</body>
+</html>

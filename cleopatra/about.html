@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Cleopatra Boudreau</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=2">
+    <link rel="apple-touch-icon" href="favicon.png?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Cleopatra Boudreau</a></div>
+        <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="reel.html">Demos</a>
+            <a href="photos.html">Photos</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="about-main" style="flex-direction: row; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4rem;">
+        <div class="image-container" style="flex: 1; min-width: 300px; max-width: 450px; height: 550px; transition-delay: 0.8s;">
+            <img src="assets/new_photos/about_photo.jpg" alt="Cleopatra Boudreau" style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px;">
+        </div>
+        <div class="page-content" style="flex: 1; min-width: 300px;">
+            <h1 class="page-title">About</h1>
+            <p style="margin-bottom: 1.5rem;">Cleopatra Boudreau is a New York-based multihyphenate working across film and theatre. A graduate of Concordia University's Theatre Performance program, she gravitates toward bold, physically expressive work that finds the funny and vulnerable in human relationships. She's particularly interested in queer identity, intimacy, friendship, and people behaving badly while feeling completely justified in doing so.</p>
+            <p style="margin-bottom: 1.5rem;">Her credits span stage and screen, including <em>Mia M.I.A.</em> at La MaMa Experimental Theatre Club, <em>Loneliness Was a Pandemic</em> with TheaterLab, and <em>Psychopathia Paschalis</em> at The Chain Theatre. On screen, she has appeared in <em>The Bold Type</em> (Freeform) and <em>Bellevue</em> (CBC), and the upcoming feature <em>The Allegory</em> (Xavier Films).</p>
+            <p>Beyond performing, Cleopatra writes, produces, and develops original film and theatre through <a href="http://otherhalffilm.com" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 4px;">Other Half Productions</a>. Her work tends to be emotionally honest without taking itself too seriously.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/cleopatraboudreau/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.imdb.com/name/nm6968367/" target="_blank" rel="noopener noreferrer">IMDb</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+

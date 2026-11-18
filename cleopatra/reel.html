@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reel - Cleopatra Boudreau</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=2">
+    <link rel="apple-touch-icon" href="favicon.png?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Cleopatra Boudreau</a></div>
+        <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="reel.html" class="active">Demos</a>
+            <a href="photos.html">Photos</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main style="flex-direction: column; align-items: center; width: 100%; gap: 3rem; padding: 2rem 1.5rem; text-align: center; max-width: 1000px; margin: 0 auto;">
+        <!-- Film & TV Section -->
+        <div style="width: 100%;">
+            <h2 class="demo-heading" style="margin-bottom: 1.5rem; text-align: center;">Film / TV Demo</h2>
+            <div class="video-container" style="background: none; height: auto; max-width: 100%; padding: 0;">
+                <video controls preload="metadata" style="width: 100%; height: auto; border-radius: 24px; display: block; box-shadow: 0 10px 30px rgba(176, 74, 60, 0.1);">
+                    <source src="assets/demo-reel.mov" type="video/quicktime">
+                    <source src="assets/demo-reel.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 2rem; width: 100%;">
+            <!-- Animation Voice Demo Section -->
+            <div class="audio-player-wrapper" style="width: 100%;">
+                <h2 class="demo-heading" style="margin-bottom: 1.5rem; text-align: center;">Animation Voice Demo</h2>
+                <div class="audio-player">
+                    <audio src="assets/animation-voice-demo.mp3" preload="metadata"></audio>
+                    <button class="play-btn">▶</button>
+                    <div class="sound-bars"></div>
+                    <div class="time-display">
+                        <span class="current-time">0:00</span> / <span class="duration">0:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commercial Voice Demo Section -->
+            <div class="audio-player-wrapper" style="width: 100%;">
+                <h2 class="demo-heading" style="margin-bottom: 1.5rem; text-align: center;">Commercial Voice Demo</h2>
+                <div class="audio-player">
+                    <audio src="voice-demo.m4a" preload="metadata"></audio>
+                    <button class="play-btn">▶</button>
+                    <div class="sound-bars"></div>
+                    <div class="time-display">
+                        <span class="current-time">0:00</span> / <span class="duration">0:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/cleopatraboudreau/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.imdb.com/name/nm6968367/" target="_blank" rel="noopener noreferrer">IMDb</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+

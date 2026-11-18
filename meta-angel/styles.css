@@ -1,0 +1,343 @@
+:root {
+    --accent-blue: #1c8bce; /* Deep Fluid Blue */
+    --accent-yellow: #f1e6b2; /* Creamy Yellow */
+    --chrome-light: #ffffff;
+    --chrome-mid: #aeb6bf;
+    --chrome-dark: #34495e;
+    
+    /* High contrast heavy chrome text gradient */
+    --chrome-text-grad: linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #d5dadd 30%,
+        #11151a 50%,
+        #ffffff 55%,
+        #828d99 80%,
+        #2a3540 100%
+    );
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+body {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden; /* Completely lock scrolling so mobile doesn't bounce */
+    touch-action: none; /* Disable pull-to-refresh and native scroll on mobile */
+    position: fixed; /* Anchor it to prevent address bar resize jumping */
+}
+
+.cyberpunk-font { font-family: 'Orbitron', sans-serif; }
+.cyber-mono { font-family: 'Share Tech Mono', monospace; }
+
+/* Airbrushed Fluid Background */
+#chrome-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+    background-color: #060d11; /* Deep charcoal teal fallback */
+    background-image: 
+        /* 1. Heavy Noise Layer (Tiled so grain is tiny and sharp) */
+        url("data:image/svg+xml,%3Csvg width='250' height='250' viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E"),
+        /* 2. Fluid Swirling Silk (User Uploaded) */
+        url("bg.jpg");
+    background-size: auto, cover; /* Noise tiles, bg covers */
+    background-position: top left, center;
+    background-repeat: repeat, no-repeat;
+    
+    /* Darken significantly more and slightly desaturate so the natural teal/blue of the image doesn't overpower */
+    filter: brightness(0.7) grayscale(0.2); 
+    
+    box-shadow: inset 0 0 250px rgba(0,0,0,0.95); /* Extremely heavy vignette */
+}
+
+/* Infinite Matrix Canvas Background */
+#matrix-canvas-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; /* Behind stars, above chrome */
+    opacity: 0.15; /* Subtly blended */
+    mix-blend-mode: screen; /* Strips out the pure black background */
+    pointer-events: none;
+}
+
+/* Scanner Bar */
+.scanner-bar {
+    position: fixed; left: 0; top: 110%; width: 100%; height: 8px; z-index: 5;
+    background: linear-gradient(to bottom, rgba(241, 230, 178, 0.8), rgba(255,255,255,1), rgba(241, 230, 178, 0.8));
+    box-shadow: 0 0 20px 8px rgba(241, 230, 178, 0.4), 0 0 60px 20px rgba(241, 230, 178, 0.2);
+    opacity: 0; mix-blend-mode: screen; /* keep it hidden till the wipe happens! */
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.scanner-bar.glow-yellow {
+    background: linear-gradient(to bottom, rgba(215, 255, 0, 0.8), rgba(255,255,255,1), rgba(215, 255, 0, 0.8)) !important;
+    box-shadow: 0 0 30px 12px rgba(215, 255, 0, 0.6), 0 0 80px 30px rgba(215, 255, 0, 0.3) !important;
+}
+
+/* Chrome Stars */
+#star-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;
+}
+.star {
+    position: absolute;
+    filter: drop-shadow(0 0 10px rgba(215, 255, 0, 0.8));
+}
+
+/* Main Content Wrapper */
+#main-content {
+    position: relative; z-index: 2; width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+
+/* Shattering Logo */
+#shatter-logo {
+    position: relative; 
+    z-index: 6; /* always keep this above the gates! */
+    width: 800px;
+    height: 300px;
+    margin-bottom: 50px;
+    /* android browsers render a weird ugly box if we apply drop-shadow to a container with clip-path children, so we removed it! */
+}
+
+/* Image Shards */
+.image-shard {
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background-image: url('logo.png?v=2');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.1s;
+    transform-origin: center center;
+}
+
+/* Engraved UI */
+.engraved-form-container {
+    width: 100%; max-width: 600px;
+    display: flex; flex-direction: column; gap: 20px;
+}
+
+.engraved-input, .engraved-btn {
+    width: 100%; padding: 18px; font-size: 1.1rem; text-align: center; letter-spacing: 0.2rem;
+    outline: none; border: none; border-radius: 8px;
+    background: transparent;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* Physical Carved-In Look */
+.engraved-input {
+    color: #444; font-weight: bold;
+    /* inner shadow to make it look carved super deep into the metal */
+    box-shadow: 
+        inset 5px 5px 12px rgba(0, 0, 0, 0.4), 
+        inset -5px -5px 12px rgba(255, 255, 255, 0.9),
+        0 2px 2px rgba(255, 255, 255, 0.6);
+    transition: all 0.3s;
+}
+
+.engraved-input:focus {
+    color: var(--accent-blue);
+    box-shadow: 
+        inset 5px 5px 15px rgba(0, 0, 0, 0.6), 
+        inset -5px -5px 12px rgba(255, 255, 255, 0.9),
+        0 2px 2px rgba(255, 255, 255, 0.6),
+        inset 0 0 10px rgba(28, 139, 206, 0.5); /* cerulean glow */
+}
+
+.engraved-input::placeholder { color: #888; text-shadow: 1px 1px 1px rgba(255,255,255,0.3); }
+
+/* Physical Raised Button (Neon Yellow/Lime Glow) */
+.engraved-btn {
+    background: rgba(215, 255, 0, 0.1);
+    color: white; font-weight: bold;
+    border: 1px solid rgba(215, 255, 0, 0.8);
+    /* keeping the neon yellow 3 percent glow here too! */
+    box-shadow: 
+        0 0 15px rgba(215, 255, 0, 0.6), 
+        inset 0 0 15px rgba(215, 255, 0, 0.4);
+    transition: all 0.2s;
+}
+
+.engraved-btn:hover {
+    background: rgba(215, 255, 0, 0.3);
+    box-shadow: 
+        0 0 25px rgba(215, 255, 0, 0.9), 
+        inset 0 0 25px rgba(215, 255, 0, 0.7);
+    color: white;
+}
+
+/* ASCII Instagram Button */
+.ig-ascii-btn {
+    font-size: 1.2rem; 
+    letter-spacing: 4px; 
+    color: #FFFEEA; 
+    transition: all 0.3s; 
+    /* Massive, soft text-shadow for a true neon backlight instead of an ugly background box */
+    text-shadow: 
+        0 0 5px rgba(215, 255, 0, 1), 
+        0 0 15px rgba(215, 255, 0, 0.8), 
+        0 0 30px rgba(215, 255, 0, 0.5), 
+        0 0 60px rgba(215, 255, 0, 0.3);
+    padding: 10px 20px;
+    display: inline-block;
+}
+#ig-link:hover .ig-ascii-btn,
+#ig-link:active .ig-ascii-btn {
+    color: #fff;
+    /* Absolutely blinding neon blow-out */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 1),
+        0 0 10px rgba(215, 255, 0, 1), 
+        0 0 20px rgba(215, 255, 0, 1), 
+        0 0 40px rgba(215, 255, 0, 1), 
+        0 0 80px rgba(215, 255, 0, 0.9),
+        0 0 120px rgba(215, 255, 0, 0.7);
+    filter: drop-shadow(0 0 10px rgba(215,255,0,1)) drop-shadow(0 0 25px rgba(215,255,0,0.8));
+    transform: scale(1.05);
+}
+
+.engraved-text {
+    text-align: center; font-weight: bold; font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+/* Custom Cursor & Trail */
+#custom-cursor {
+    position: fixed; top: 0; left: 0; width: 60px; height: 60px; /* keeping it chill at 60px */
+    border-radius: 50%; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    backdrop-filter: hue-rotate(60deg) blur(2px); /* shifted hue so it matches the neon yellow! */
+    border: 1px solid rgba(215, 255, 0, 0.5); /* 3 percent yellow border */
+    box-shadow: inset 0 0 15px rgba(215, 255, 0, 0.4); 
+}
+
+.cursor-trail {
+    position: fixed; top: 0; left: 0; width: 8px; height: 8px; 
+    border-radius: 50%; pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #fff, rgba(215, 255, 0, 1));
+    box-shadow: 0 0 10px rgba(215, 255, 0, 0.8); 
+
+    opacity: 0.8;
+}
+.trail-1 { width: 8px; height: 8px; opacity: 0.6; }
+.trail-2 { width: 6px; height: 6px; opacity: 0.4; }
+.trail-3 { width: 4px; height: 4px; opacity: 0.2; }
+.trail-4 { width: 2px; height: 2px; opacity: 0.1; }
+
+/* Intro Blackout */
+#intro-blackout {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #02040a; z-index: 4;
+}
+#decryption-text {
+    position: fixed; 
+    bottom: 5%; 
+    left: 5%; 
+    font-size: 1.5rem; 
+    letter-spacing: 0.5rem; 
+    z-index: 6;
+    text-align: left;
+}
+@media (max-width: 768px) {
+    #shatter-logo {
+        width: 90vw;
+        height: calc(90vw * (300/800));
+        margin-bottom: 30px;
+    }
+    .input-wrapper { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 20px;
+    }
+    .email-input { 
+        width: 60vw; /* 3/5ths of the screen so it's not too wide on phones */
+        max-width: none; 
+        text-align: center;
+        padding: 12px 20px;
+    }
+    .submit-btn { 
+        width: 60vw; 
+        max-width: none; 
+    }
+    #decryption-text { 
+        font-size: 1.2rem; 
+        letter-spacing: 0.2rem; 
+    }
+    /* hide the custom cursor on mobile so it doesn't block taps! */
+    #custom-cursor, .cursor-trail { display: none !important; }
+}
+
+/* Success Modal */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background: rgba(2, 4, 10, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+.modal-overlay.active {
+    opacity: 1; pointer-events: auto;
+}
+.modal-box {
+    width: 90%; max-width: 500px;
+    padding: 40px; text-align: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #d5dadd 0%, #aeb6bf 40%, #7d8a97 50%, #d5dadd 60%, #9aa5b1 100%);
+    box-shadow: 
+        10px 10px 30px rgba(0, 0, 0, 0.7), 
+        -5px -5px 20px rgba(255, 255, 255, 0.5),
+        inset 2px 2px 5px rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.4);
+    transform: scale(0.8);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-overlay.active .modal-box {
+    transform: scale(1);
+}
+.carved-text {
+    color: #444; font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8), -1px -1px 2px rgba(0,0,0,0.5);
+}
+.carved-text.accent {
+    color: white;
+    -webkit-text-stroke: 0;
+    /* cream yellow glow that matches the matrix letters! */
+    text-shadow: 0 0 15px rgba(241, 230, 178, 0.8), 0 0 30px rgba(241, 230, 178, 0.6), 0 0 45px rgba(241, 230, 178, 0.4);
+}
+.carved-text.accent-neon {
+    color: white;
+    -webkit-text-stroke: 0;
+    /* neon yellow glow for the intro text */
+    text-shadow: 0 0 15px rgba(215, 255, 0, 0.8), 0 0 30px rgba(215, 255, 0, 0.6), 0 0 45px rgba(215, 255, 0, 0.4);
+}
+
+/* Responsive typography */
+.title-text {
+    margin-bottom: 15px; 
+    font-size: 1.6rem; 
+    letter-spacing: 4px;
+}
+.subtitle-text {
+    margin-bottom: 35px; 
+    font-size: 0.9rem; 
+    letter-spacing: 2px; 
+    color: #d5dadd;
+}
+
+@media (max-width: 480px) {
+    .title-text {
+        font-size: clamp(1.2rem, 4vw, 2rem);
+        letter-spacing: 4px;
+    }
+    .subtitle-text {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+    #ticket-btn {
+        font-size: 0.9rem;
+        padding: 18px;
+    }
+}
